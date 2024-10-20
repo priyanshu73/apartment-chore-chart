@@ -6,6 +6,8 @@ const TaskTable = () => {
 
   // Define members responsible for each task
   const kitchenTrashMembers = [ "Nafis", "Priyanshu", "Sanij", "Soikat"];
+  const user = JSON.parse(localStorage.getItem('user'));
+
 
   // Initial state for task completion (true = done, false = not done)
   const [mainDoorTrash, setMainDoorTrash] = useState(
@@ -28,6 +30,9 @@ const TaskTable = () => {
   return (
     <div className="task-tables">
       <h2>Main Door Trash</h2>
+      <h1>Welcome, {user.name}!</h1>
+      <p>Email: {user.email}</p>
+      <button>Logout</button>
       <table>
         <thead>
           <tr>
