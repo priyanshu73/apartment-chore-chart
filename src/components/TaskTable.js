@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import '../style.css';
+import { googleLogout } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 const TaskTable = () => {
+
+  const navigate = useNavigate();
+  
   const members = ["Andry", "Hayden", "Nafis", "Priyanshu", "Sanij", "Soikat", "Ulugbek", "Ward"];
 
   // Define members responsible for each task
@@ -32,12 +37,18 @@ const TaskTable = () => {
     return user.name.toLowerCase().includes(memberName.toLowerCase());
   };
 
+  const handleLogout = () => {
+    googleLogout();
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
+
   return (
     <div className="task-tables">
       <h2>Main Door Trash</h2>
       <h1>Welcome, {user.name}!</h1>
       <p>Email: {user.email}</p>
-      <button>Logout</button>
+      <button onClick={handleLogout}>Logout</button>
       <table>
         <thead>
           <tr>
@@ -89,6 +100,7 @@ const TaskTable = () => {
                   onChange={() =>
                     handleToggleTask(kitchenTrash, setKitchenTrash, index)
                   }
+                  disabled={!isCurrentUser(member)}
                 />
               </td>
               <td>{kitchenTrash[index].date}</td>

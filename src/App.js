@@ -12,16 +12,15 @@ import Login from './components/Login';
 function App() {
   return (
     <>
-    <GoogleOAuthProvider clientId={process.env.clientId}>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
     <div className="App">
+    <Header />
     <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/task" element={<TaskTable />} />
         </Routes>
       </Router>
-      <Header />
-      <TaskTable />
       
     </div>
     </GoogleOAuthProvider>
