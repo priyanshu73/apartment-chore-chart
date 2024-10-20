@@ -13,6 +13,27 @@ body {
   padding: 20px;
 }
 
+/* Progress Bar Styles */
+.progress-container {
+  width: 70%; /* Ensure it takes the full width of the table */
+  height: 20px; /* Set a height for better visibility */
+  background-color: #f3f3f3; /* Light background for contrast */
+  border-radius: 5px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow */
+  margin: 10px 0; /* Add some spacing */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center the progress bar */
+}
+
+.progress-bar {
+  height: 100%; /* Ensure the bar takes the full height of the container */
+  background-color: #4caf50; /* Change to desired color */
+  transition: width 0.3s ease; /* Smooth transition effect */
+  width: 100%; /* Set a specific width for the progress bar */
+  max-width: 300px; /* Optional: set a max width */
+}
+
 .header {
   background-color: #00796b; /* Teal background */
   padding: 20px;
