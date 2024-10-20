@@ -14,6 +14,7 @@ const Login = () => {
     // Save user info to state or context
     // For example, using localStorage (not secure for sensitive data):
     localStorage.setItem('user', JSON.stringify(decoded));
+    localStorage.setItem('name', decoded.name);
     
     // Redirect to dashboard
     navigate('/task');

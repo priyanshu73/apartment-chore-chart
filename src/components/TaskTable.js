@@ -27,6 +27,11 @@ const TaskTable = () => {
     setTask(updatedTask);
   };
 
+  const isCurrentUser = (memberName) => {
+    if (!user || !user.name) return false;
+    return user.name.toLowerCase().includes(memberName.toLowerCase());
+  };
+
   return (
     <div className="task-tables">
       <h2>Main Door Trash</h2>
@@ -50,10 +55,12 @@ const TaskTable = () => {
               <td>
                 <input
                   type="checkbox"
+
                   checked={mainDoorTrash[index].completed}
                   onChange={() =>
                     handleToggleTask(mainDoorTrash, setMainDoorTrash, index)
                   }
+                  disabled={!isCurrentUser(member)}
                 />
               </td>
               <td>{mainDoorTrash[index].date}</td>
