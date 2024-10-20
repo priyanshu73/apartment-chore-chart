@@ -1,0 +1,98 @@
+/* src/style.css */
+
+/* Basic resets */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif; /* Changed to Roboto for elegance */
+  background: linear-gradient(to right, #e0f7fa, #fffde7); /* Soft gradient background */
+  color: #333;
+  padding: 20px;
+}
+
+.header {
+  background-color: #00796b; /* Teal background */
+  padding: 20px;
+  text-align: center; /* Center text */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.header h1 {
+  color: white; /* White text */
+  font-size: 2.5em; /* Large font size */
+  margin: 0; /* Remove default margin */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+}
+
+h2 {
+  margin-top: 40px;
+  text-align: center;
+  color: #00796b; /* Darker teal color */
+  font-size: 2em; /* Larger font size */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.task-tables {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+table {
+  width: 80%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Prevent overflow */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the table */
+  background-color: #ffffff; /* White background for table */
+}
+
+th {
+  background-color: #00796b; /* Teal header background */
+  color: white;
+  padding: 12px 15px; /* Padding for header cells */
+  font-weight: bold;
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle;
+  letter-spacing: 1px; /* Add spacing between letters */
+}
+
+td {
+  padding: 12px 15px; /* Increase padding for data cells */
+  border-bottom: 1px solid #ddd; /* Light gray border */
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle;
+  font-size: 1.1em; /* Slightly increase font size */
+  font-weight: 300; /* Use light font weight for elegance */
+  letter-spacing: 0.5px; /* Add spacing between letters */
+}
+
+td:hover {
+  background-color: #f1f1f1; /* Light gray hover effect for rows */
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 20px;
+  border: none;
+  background-color: #00796b; /* Teal button */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+  background-color: #004d40; /* Darker teal on hover */
+}
