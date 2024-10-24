@@ -10,9 +10,10 @@ import Login from './components/Login';
 
 
 function App() {
+  console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)
   return (
     <>
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider  clientId="357554311887-gvuhe407oo4qh0emnvv4s6ujd7gauvmv.apps.googleusercontent.com">
     <div className="App">
     <Header />
     <Router>

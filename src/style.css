@@ -15,7 +15,7 @@ body {
 
 /* Progress Bar Styles */
 .progress-container {
-  width: 70%; /* Ensure it takes the full width of the table */
+  width: 100%; /* Ensure it takes the full width of the table */
   height: 20px; /* Set a height for better visibility */
   background-color: #f3f3f3; /* Light background for contrast */
   border-radius: 5px; /* Rounded corners */
@@ -23,15 +23,14 @@ body {
   margin: 10px 0; /* Add some spacing */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
   display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Center the progress bar */
 }
 
 .progress-bar {
   height: 100%; /* Ensure the bar takes the full height of the container */
   background-color: #4caf50; /* Change to desired color */
   transition: width 0.3s ease; /* Smooth transition effect */
-  width: 100%; /* Set a specific width for the progress bar */
-  max-width: 300px; /* Optional: set a max width */
+  width: 0%; /* Set a specific width for the progress bar */
+  /*max-width: 300px; /* Optional: set a max width */
 }
 
 .header {
@@ -117,3 +116,23 @@ button {
 button:hover {
   background-color: #004d40; /* Darker teal on hover */
 }
+
+.reset {
+  padding: 10px 20px; /* Add some padding for better touch target */
+  font-size: 16px; /* Adjust font size */
+  color: #fff; /* Text color */
+  /*background-color: #007bff; /* Primary color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.reset:hover {
+  background-color: #af1545; /* Darker shade on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+
+

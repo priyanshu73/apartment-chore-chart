@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../style.css';
 import { googleLogout } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +29,92 @@ const TaskTable = () => {
     toiletB.map(() => ({ completed: false, date: "" }))
   );
 
-  // Handle task completion toggle
+  const setters = [setMainDoorTrash, setKitchenTrash, setToiletAStatus, setToiletBStatus];
+  const loadTable = (index, tasks) => {
+    setters[index](tasks);
+  };
+
+
+
+
+  // Commented out useEffect
+  const [shouldRefetch, setShouldRefetch] = useState(false);
+  useEffect(() => {
+    const fetchTasks = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/tasks');
+            const data = await response.json();
+            // Assuming your JSON data is stored in a variable called 'data'
+            Object.values(data).forEach((table, index) => {
+              loadTable(index,table);
+            });
+
+        } catch (error) {
+            console.error('Error fetching tasks:', error);
+        }
+    };
+
+    fetchTasks();
+  }, [shouldRefetch]); // Empty dependency array means it runs once on mount
+  
+
+  const createRequestBody = (type, name, completed, date) => {
+    const body = {
+        taskType: type,
+        name: name,
+        completed: completed,
+        date: date
+    };
+
+    return body;
+};
+
+
+const handleReset = async () => {
+  try {
+      const response = await fetch('http://127.0.0.1:8000/reset/', {
+          method: 'PUT'
+      });
+
+      // Check if the response is successful
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Optionally handle the response data
+      const data = await response.json(); // Assuming the server returns JSON
+      console.log('Reset successful:', data);
+
+      setShouldRefetch(prev => !prev);
+  } catch (error) {
+      console.error('Error resetting table:', error);
+      // Optionally provide user feedback about the error
+  }
+};
+
+  const handleTaskUpdate = async (taskData) => {
+    try {
+        const response = await fetch('http://127.0.0.1:8000/update_task/', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json', // Specify the content type
+            },
+            body: JSON.stringify(taskData), // Convert your object to JSON string
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json(); // Optional: handle response data if needed
+        console.log('Task updated successfully:', data);
+        setShouldRefetch(prev => !prev); // Toggle to trigger refetch
+    } catch (error) {
+        console.error('Error updating task:', error);
+    }
+};
+
+  // Handle task completion toggle for frontend only app//
   const handleToggleTask = (task, setTask, index) => {
     const updatedTask = [...task];
     const currentDate = new Date().toLocaleDateString(); 
@@ -42,6 +127,7 @@ const TaskTable = () => {
   const calculateCompletionPercentage = (task) => {
     const totalTasks = task.length;
     const completedTasks = task.filter(t => t.completed).length;
+    console.log(`Total: ${totalTasks}, Completed: ${completedTasks}`); // Debugging
     return totalTasks ? (completedTasks / totalTasks) * 100 : 0;
   };
 
@@ -82,10 +168,29 @@ const TaskTable = () => {
                 <input
                   type="checkbox"
                   checked={mainDoorTrash[index].completed}
-                  onChange={() =>
-                    handleToggleTask(mainDoorTrash, setMainDoorTrash, index)
-                  }
-                  disabled={!isCurrentUser(member)}
+                  onChange={() => {
+                    // Calculate the new completed state
+                    const newCompletedState = !mainDoorTrash[index].completed;
+
+                    // Update the task completion state
+                    handleToggleTask(mainDoorTrash, setMainDoorTrash, index);
+
+                    // Create request body with the necessary information
+                    const requestBody = createRequestBody(
+                        "mainDoorTrash", // Assuming you have a taskType
+                        member, // The name of the member who checked the task
+                        newCompletedState, // Send the new completed state
+                        new Date().toLocaleDateString() // Current date
+                    );
+
+                    // Log the request body for debugging
+                    console.log(requestBody);
+
+                    // Call the function to handle the task update, passing the request body
+                    handleTaskUpdate(requestBody);
+                    
+                }}
+                  //disabled={!isCurrentUser(member)}
                 />
               </td>
               <td>{mainDoorTrash[index].date}</td>
@@ -109,15 +214,34 @@ const TaskTable = () => {
         <tbody>
           {kitchenTrashMembers.map((member, index) => (
             <tr key={member}>
-              <td>{member}</td>
+              <td>{member} {kitchenTrash[index].completed && <span role="img" aria-label="happy">😊</span>}</td>
               <td>
                 <input
                   type="checkbox"
                   checked={kitchenTrash[index].completed}
-                  onChange={() =>
-                    handleToggleTask(kitchenTrash, setKitchenTrash, index)
-                  }
-                  disabled={!isCurrentUser(member)}
+                  onChange={() => {
+                    // Calculate the new completed state
+                    const newCompletedState = !kitchenTrash[index].completed;
+
+                    // Update the task completion state
+                    handleToggleTask(kitchenTrash, setKitchenTrash, index);
+
+                    // Create request body with the necessary information
+                    const requestBody = createRequestBody(
+                        "kitchenTrash", // Assuming you have a taskType
+                        member, // The name of the member who checked the task
+                        newCompletedState, // Send the new completed state
+                        new Date().toLocaleDateString() // Current date
+                    );
+
+                    // Log the request body for debugging
+                    console.log(requestBody);
+
+                    // Call the function to handle the task update, passing the request body
+                    handleTaskUpdate(requestBody);
+                    
+                }}
+                  //disabled={!isCurrentUser(member)}
                 />
               </td>
               <td>{kitchenTrash[index].date}</td>
@@ -142,15 +266,34 @@ const TaskTable = () => {
         <tbody>
           {toiletA.map((member, index) => (
             <tr key={member}>
-              <td>{member}</td>
+              <td>{member} {toiletAStatus[index].completed && <span role="img" aria-label="happy">😊</span>} </td>
               <td>
                 <input
                   type="checkbox"
                   checked={toiletAStatus[index].completed}
-                  onChange={() =>
-                    handleToggleTask(toiletAStatus, setToiletAStatus, index)
-                  }
-                  disabled={!isCurrentUser(member)}
+                  onChange={() => {
+                    // Calculate the new completed state
+                    const newCompletedState = !toiletAStatus[index].completed;
+
+                    // Update the task completion state
+                    handleToggleTask(toiletAStatus, setToiletAStatus, index);
+
+                    // Create request body with the necessary information
+                    const requestBody = createRequestBody(
+                        "toiletA", // Assuming you have a taskType
+                        member, // The name of the member who checked the task
+                        newCompletedState, // Send the new completed state
+                        new Date().toLocaleDateString() // Current date
+                    );
+
+                    // Log the request body for debugging
+                    console.log(requestBody);
+
+                    // Call the function to handle the task update, passing the request body
+                    handleTaskUpdate(requestBody);
+                    
+                }}
+                  //disabled={!isCurrentUser(member)}
                 />
               </td>
               <td>{toiletAStatus[index].date}</td>
@@ -175,15 +318,34 @@ const TaskTable = () => {
         <tbody>
           {toiletB.map((member, index) => (
             <tr key={member}>
-              <td>{member}</td>
+              <td>{member}  {toiletBStatus[index].completed && <span role="img" aria-label="happy">😊</span>}</td>
               <td>
                 <input
                   type="checkbox"
                   checked={toiletBStatus[index].completed}
-                  onChange={() =>
-                    handleToggleTask(toiletBStatus, setToiletBStatus, index)
-                  }
-                  disabled={!isCurrentUser(member)}
+                  onChange={() => {
+                    // Calculate the new completed state
+                    const newCompletedState = !toiletBStatus[index].completed;
+
+                    // Update the task completion state
+                    handleToggleTask(toiletBStatus, setToiletBStatus, index);
+
+                    // Create request body with the necessary information
+                    const requestBody = createRequestBody(
+                        "toiletB", // Assuming you have a taskType
+                        member, // The name of the member who checked the task
+                        newCompletedState, // Send the new completed state
+                        new Date().toLocaleDateString() // Current date
+                    );
+
+                    // Log the request body for debugging
+                    console.log(requestBody);
+
+                    // Call the function to handle the task update, passing the request body
+                    handleTaskUpdate(requestBody);
+                    
+                }}
+                  //disabled={!isCurrentUser(member)}
                 />
               </td>
               <td>{toiletBStatus[index].date}</td>
@@ -191,6 +353,9 @@ const TaskTable = () => {
           ))}
         </tbody>
       </table>
+      <div>
+        <button className ="reset" onClick={handleReset}>Reset</button>
+      </div>
     </div>
   );
 };
