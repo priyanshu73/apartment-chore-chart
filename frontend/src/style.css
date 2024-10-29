@@ -1,0 +1,253 @@
+/* src/style.css */
+
+/* Basic resets */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif; /* Changed to Roboto for elegance */
+  background: linear-gradient(to right, #e0f7fa, #fffde7); /* Soft gradient background */
+  color: #333;
+  padding: 0px;
+}
+
+/* Progress Bar Styles */
+.progress-container {
+  width: 100%; /* Ensure it takes the full width of the table */
+  height: 20px; /* Set a height for better visibility */
+  background-color: #f3f3f3; /* Light background for contrast */
+  border-radius: 5px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow */
+  margin: 10px 0; /* Add some spacing */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  display: flex; /* Use flexbox for centering */
+}
+
+.progress-bar {
+  height: 100%; /* Ensure the bar takes the full height of the container */
+  background-color: #4caf50; /* Change to desired color */
+  transition: width 0.3s ease; /* Smooth transition effect */
+  width: 0%; /* Set a specific width for the progress bar */
+  /*max-width: 300px; /* Optional: set a max width */
+}
+
+.header {
+  background-color: #00796b; /* Teal background */
+  padding: 20px;
+  text-align: center; /* Center text */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  margin-bottom: 20px; /* Space below the header */
+}
+
+.header h1 {
+  color: white; /* White text */
+  font-size: 2.5em; /* Large font size */
+  margin: 0; /* Remove default margin */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+}
+
+h2 {
+  margin-top: 40px;
+  text-align: center;
+  color: #00796b; /* Darker teal color */
+  font-size: 2em; /* Larger font size */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.task-tables {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+table {
+  width: 80%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Prevent overflow */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the table */
+  background-color: #ffffff; /* White background for table */
+}
+
+th {
+  background-color: #00796b; /* Teal header background */
+  color: white;
+  padding: 12px 15px; /* Padding for header cells */
+  font-weight: bold;
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle;
+  letter-spacing: 1px; /* Add spacing between letters */
+}
+
+td {
+  padding: 12px 15px; /* Increase padding for data cells */
+  border-bottom: 1px solid #ddd; /* Light gray border */
+  text-align: center; /* Center text horizontally */
+  vertical-align: middle;
+  font-size: 1.1em; /* Slightly increase font size */
+  font-weight: 300; /* Use light font weight for elegance */
+  letter-spacing: 0.5px; /* Add spacing between letters */
+}
+
+td:hover {
+  background-color: #f1f1f1; /* Light gray hover effect for rows */
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 20px;
+  border: none;
+  background-color: #00796b; /* Teal button */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+  background-color: #004d40; /* Darker teal on hover */
+}
+
+.reset {
+  padding: 10px 20px; /* Add some padding for better touch target */
+  font-size: 16px; /* Adjust font size */
+  color: #fff; /* Text color */
+  /*background-color: #007bff; /* Primary color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.reset:hover {
+  background-color: #af1545; /* Darker shade on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+/* Home Container */
+.home-container {
+  background-image: url('./assets/imageBg.jpg'); /* Corrected path to your image */
+  background-size: cover; /* Make the background image cover the entire container */
+  background-position: center; /* Center the image */
+  height: 100vh;/* Ensure it takes the full height of the viewport */
+  display: flex; /* Use flexbox for centering content */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text */
+  padding: 0px; /* Add padding for spacing */
+  color: white; /* Change text color to white for better visibility */
+  position: relative; /* Positioning context for the overlay */
+}
+
+/* Overlay to improve text visibility */
+.home-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  z-index: 1; /* Place overlay below the text */
+}
+
+h1 {
+  position: relative; /* Position text above the overlay */
+  z-index: 2; /* Ensure text is above overlay */
+  font-size: 3rem; /* Adjust size as needed */
+  margin: 0; /* Remove default margin */
+}
+
+p {
+  position: relative; /* Position text above the overlay */
+  z-index: 2; /* Ensure text is above overlay */
+  font-size: 1.5rem; /* Adjust size as needed */
+  margin: 10px 0; /* Add margin for spacing */
+}
+
+/* Button styles */
+.login-button {
+  padding: 15px 30px; /* Increase padding for a bigger button */
+  font-size: 1.2rem; /* Larger font size for better readability */
+  border: none;
+  background-color: #00796b; /* Teal button */
+  color: white;
+  border-radius: 8px; /* Slightly larger border-radius for rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Smooth transition for background, transform, and shadow */
+  position: relative; /* Ensure positioning context for z-index */
+  z-index: 3; /* Higher z-index to be above the overlay */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.login-button:hover {
+  background-color: #004d40; /* Darker teal on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+.login-button:active {
+  transform: translateY(0); /* Reset lift when button is pressed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduce shadow when pressed */
+}
+/* Login.css */
+/* Login.css */
+
+body {
+  margin: 0; /* Remove default margin */
+  font-family: 'Arial', sans-serif; /* Set a clean, modern font */
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Removed justify-content to move content closer to the top */
+  height: 80vh; /* Reduced height to bring content closer to the top */
+  /* Gradient background, if needed */
+  padding-top: 20px; /* Optional: Add some padding at the top */
+}
+
+
+
+.google-login-wrapper {
+  margin-top: 20px; /* Space above the button */
+}
+
+.custom-google-login {
+  background: white; /* White background for the button */
+  color: #4285F4; /* Google blue for the text */
+  padding: 15px 30px; /* Increased padding for larger button */
+  font-size: 1.2rem; /* Slightly larger font size */
+  border-radius: 25px; /* More rounded corners */
+  border: 2px solid #4285F4; /* Blue border for the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.2s, color 0.3s; /* Smooth transition effects */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow for a floating effect */
+  font-weight: bold; /* Bold font for emphasis */
+}
+
+/* Button hover effect */
+.custom-google-login:hover {
+  background-color: #4285F4; /* Change background to Google blue on hover */
+  color: white; /* Change text color to white */
+  transform: translateY(-3px); /* Slightly lift the button on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+/* Add a footer or additional link section if needed */
+.footer {
+  margin-top: 40px; /* Space above footer */
+  color: white; /* Footer text color */
+  font-size: 0.9rem; /* Smaller font size */
+}

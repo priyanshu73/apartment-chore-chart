@@ -1,0 +1,110 @@
+{
+  "mainDoorTrash": [
+    {
+      "name": "Andry",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Hayden",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Nafis",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Priyanshu",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Sanij",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Soikat",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Ulugbek",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Ward",
+      "completed": false,
+      "date": ""
+    }
+  ],
+  "kitchenTrash": [
+    {
+      "name": "Nafis",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Priyanshu",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Sanij",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Soikat",
+      "completed": false,
+      "date": ""
+    }
+  ],
+  "toiletA": [
+    {
+      "name": "Andry",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Priyanshu",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Soikat",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Ulugbek",
+      "completed": false,
+      "date": ""
+    }
+  ],
+  "toiletB": [
+    {
+      "name": "Hayden",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Nafis",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Sanij",
+      "completed": false,
+      "date": ""
+    },
+    {
+      "name": "Ward",
+      "completed": false,
+      "date": ""
+    }
+  ]
+}
